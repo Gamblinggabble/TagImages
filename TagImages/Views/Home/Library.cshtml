@@ -1,0 +1,81 @@
+﻿@inject TagImages.Data.ApplicationDbContext dbContext
+
+@model List<TagImages.Models.Image>
+
+
+@{
+	ViewData["Title"] = "Library";
+}
+
+
+<h1>@ViewData["Title"]</h1>
+
+
+<style>
+	.image-container {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.image-item {
+		flex: 0 0 50%;
+		padding: 10px;
+		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+	}
+
+		.image-item img {
+			max-width: 90%;
+		}
+
+	.image-tags {
+		margin-left: 10px;
+	}
+
+		.image-tags ul {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		.image-tags li {
+			margin-bottom: 5px;
+			display: inline-block;
+			background-color: #ffc0cb;
+			color: black;
+			padding: 4px 8px;
+			border-radius: 20px;
+			font-size: 12px;
+			font-weight: bold;
+		}
+</style>
+
+<h1>Images with Tags</h1>
+
+<div class="image-container">
+	@foreach (var image in Model)
+	{
+		<div class="image-item">
+			<img src="@image.url" alt="Image">
+			<div class="image-tags">
+				<ul>
+					@if (image.Tags != null)
+						@foreach (var tag in image.Tags)
+						{
+							<li>@dbContext.Tag.ToList().Find(t => t.Id == tag.TagId).Title</li>
+							@*<li>@tag.TagId</li>*@
+						}
+					@*else
+						@foreach (var tag in ViewBag.Tags)
+						{
+							<li>@tag.Title</li>
+						}*@
+				</ul>
+			</div>
+		</div>
+	}
+</div>
+
+
+

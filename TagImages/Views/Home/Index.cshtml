@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+
+    .form-control:focus {
+        box-shadow: 0 0 0 0.2rem rgba(255, 153, 204, 1) !important;
+    }
+
+</style>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a style="color:deeppink" href="https://imagga.com/">image recognition</a>.</p>
+</div>
+
+
+<h2>Enter your image url here</h2>
+
+<div class="text-center">
+    <form method="post" action="/Home/Index">
+        <div class="form-group">
+            <input type="url" id="imageUrl" name="imageUrl" class="form-control" placeholder="Enter the URL" required />
+        </div>
+        <br/>
+        <button type="submit" style="background-color:hotpink; border-color:hotpink" class="btn btn-primary">Submit</button>
+    </form>
+</div>
